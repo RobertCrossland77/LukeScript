@@ -1,4 +1,3 @@
-import { Console } from "console";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -95,18 +94,3 @@ const total = (payments: Array<Payment>, terminalID: string) =>
     console.log(result);
   }
 })();
-// const parsed = serializeCSV("data/data-full.csv");
-// console.log(parsed);
-
-//   return [
-//     ...prev,
-//     ...curr
-//       .split("[")[1]
-//       .split("]")[0]
-//       .replace(/},{/g, "}\n{")
-//       .replace(/\\"/g, '"')
-//       .split("\n"),
-//   ];
-// }, []);
-//return flattened;
-//const serialized = flattened.map((f) => JSON.parse(f));

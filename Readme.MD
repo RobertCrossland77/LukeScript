@@ -1,3 +1,7 @@
+# LukeScript
+
+Place your file in the data directory with whatever name you like.
+
 ## Arguments:
 
 :filename: a relative filename from current directory
