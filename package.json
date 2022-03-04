@@ -1,0 +1,19 @@
+{
+  "name": "lukescript",
+  "version": "1.0.0",
+  "description": "Script for Luke",
+  "main": "dist/index.js",
+  "author": "RobertCrossland77 <robert.crossland@e-hps.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node index"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.21",
+    "ts-node": "10.6.0",
+    "typescript": "4.6.2"
+  },
+  "dependencies": {
+    "nodemon": "2.0.15"
+  }
+}
