@@ -2,6 +2,10 @@
 
 Place your file in the data directory with whatever name you like.
 
+1. Git Clone
+2. yarn
+3. Run the command as below
+
 ## Arguments:
 
 :filename: a relative filename from current directory
