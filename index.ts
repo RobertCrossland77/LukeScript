@@ -18,7 +18,6 @@ type Payment = {
 
 const getArgs = (): PaymentArgs | undefined => {
   try {
-    // first two args are default args, so there will be 4
     if (process.argv && process.argv.length >= 4) {
       return {
         file: process.argv[2],
@@ -31,33 +30,25 @@ const getArgs = (): PaymentArgs | undefined => {
   }
 };
 
-const parseCSV = (filePath: string) => {
-  const csvFilePath = path.resolve(__dirname, filePath);
-  const fileContent = fs.readFileSync(csvFilePath, { encoding: "utf-8" });
-  const removedWhitespace = fileContent.trim();
-  const removedHeader = removedWhitespace.replace(/\"JsonData\"\n/, "");
-  const rows = removedHeader.split("\n");
-  const flattened = rows.reduce<Array<string>>((prev, curr, index) => {
-    const removeOpenBrace = curr.split("[");
-    if (removeOpenBrace.length !== 2) {
-      throw new Error(`Error occurrect on index ${index} which equals ${curr}`);
-    }
-
-    const removeCloseBrace = removeOpenBrace[1]?.split("]");
-    if (removeCloseBrace.length !== 2) {
-      throw new Error(`Error occurrect on index ${index} which equals ${curr}`);
-    }
-
-    const newLineBetweenObjects = removeCloseBrace[0].replace(/},{/g, "}\n{");
-    const removeEscapedQuotes = newLineBetweenObjects.replace(/\\"/g, '"');
-    const splitIntoIndividualObjects = removeEscapedQuotes.split("\n");
-
-    return [...prev, ...splitIntoIndividualObjects];
-  }, []);
-
-  const parsed = flattened.map((f) => JSON.parse(f) as Payment);
-  return parsed;
-};
+const parseCSV = (filePath: string) =>
+  fs
+    .readFileSync(path.resolve(__dirname, filePath), { encoding: "utf-8" })
+    .trim()
+    .replace(/\"JsonData\"\n/, "")
+    .split("\n")
+    .reduce<Array<string>>(
+      (prev, curr) => [
+        ...prev,
+        ...curr
+          .split("[")[1]
+          .split("]")[0]
+          .replace(/},{/g, "}\n{")
+          .replace(/\\"/g, '"')
+          .split("\n"),
+      ],
+      []
+    )
+    .map((f) => JSON.parse(f) as Payment);
 
 const total = (payments: Array<Payment>, terminalID: string) =>
   payments
