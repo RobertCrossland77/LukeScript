@@ -8,8 +8,8 @@ Place your file in the data directory with whatever name you like.
 
 ## Arguments:
 
-:filename: a relative filename from current directory
-:terminalId: the terminal ID you wish to sum
+- :filename: a relative filename from current directory
+- :terminalId: the terminal ID you wish to sum
 
 `npm start -- :filename :terminalId`
 
