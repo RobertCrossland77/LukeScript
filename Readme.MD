@@ -13,7 +13,8 @@ Place your file in the data directory with whatever name you like.
 
 `npm start -- :filename :terminalId`
 
-###Example:
+### Example:
+
 `npm start -- "data/data-full.csv" 1`
 
 This will load the file ./data/data-full.csv and sum where TerminalID = 1
